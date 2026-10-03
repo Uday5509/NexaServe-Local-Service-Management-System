@@ -1,0 +1,25 @@
+{% extends "base.html" %}{% block title %}Find trusted local services{% endblock %}
+{% block content %}
+<section class="hero-section">
+ <div class="container py-5"><div class="row align-items-center g-5">
+  <div class="col-lg-6">
+   <div class="eyebrow"><span class="pulse"></span> YOUR NEIGHBORHOOD, TAKEN CARE OF</div>
+   <h1 class="display-4 fw-bold mt-3">The right help.<br><span class="text-primary">Right around</span> you.</h1>
+   <p class="lead text-secondary mt-3 mb-4">Book reliable home services in minutes. From quick fixes to everyday care, local experts are ready to help.</p>
+   <form class="search-bar d-flex p-2 bg-white shadow-sm" action="{{ url_for('services') }}"><i class="bi bi-search ms-3 align-self-center text-muted"></i><input class="form-control border-0 shadow-none" name="q" placeholder="What service do you need?"><button class="btn btn-primary rounded-pill px-4">Search</button></form>
+   <div class="small text-secondary mt-3"><i class="bi bi-check-circle-fill text-success me-1"></i> Easy booking <span class="mx-2">·</span><i class="bi bi-check-circle-fill text-success me-1"></i> Clear pricing <span class="mx-2">·</span><i class="bi bi-check-circle-fill text-success me-1"></i> Local professionals</div>
+  </div>
+  <div class="col-lg-6"><div class="hero-art">
+    <div class="hero-photo"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=85" alt="Professional cleaning a home"></div>
+    <div class="floating-card rating-card"><div class="avatar-icon"><i class="bi bi-star-fill"></i></div><div><strong>Service you can count on</strong><div class="small text-muted">Made for your everyday needs</div></div></div>
+    <div class="floating-card mini-card"><i class="bi bi-calendar-check text-primary fs-4"></i><div><strong>Quick booking</strong><div class="small text-muted">A few simple steps</div></div></div>
+  </div></div>
+ </div></div>
+</section>
+<section class="container py-5">
+ <div class="d-flex justify-content-between align-items-end mb-4"><div><div class="eyebrow">WHAT CAN WE HELP WITH?</div><h2 class="section-title mt-2">Popular services</h2><p class="text-secondary mb-0">Find the help you need, all in one place.</p></div><a class="text-decoration-none fw-semibold" href="{{ url_for('services') }}">View all <i class="bi bi-arrow-up-right"></i></a></div>
+ <div class="row g-4">{% for service in services %}<div class="col-6 col-md-4"><a class="service-card" href="{{ url_for('book', service_id=service.id) }}"><div class="service-icon"><i class="bi {{ service.icon }}"></i></div><h5>{{ service.title }}</h5><p>{{ service.description }}</p><div class="d-flex justify-content-between align-items-center mt-auto"><span class="price">From ₹{{ service.price }}</span><span class="round-arrow"><i class="bi bi-arrow-up-right"></i></span></div></a></div>{% endfor %}</div>
+</section>
+<section class="how-section py-5"><div class="container"><div class="text-center mb-5"><div class="eyebrow">SIMPLE BY DESIGN</div><h2 class="section-title mt-2">Get it done in 3 easy steps</h2></div><div class="row g-4 text-center"><div class="col-md-4"><div class="step-number">01</div><h5>Choose a service</h5><p class="text-secondary">Explore services and find the right fit for your needs.</p></div><div class="col-md-4"><div class="step-number">02</div><h5>Book your slot</h5><p class="text-secondary">Share your preferred date, time, and service address.</p></div><div class="col-md-4"><div class="step-number">03</div><h5>Relax, it's handled</h5><p class="text-secondary">Track your request and stay updated on its status.</p></div></div></div></section>
+<section class="container py-5"><div class="cta-panel p-4 p-md-5 d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3"><div><h2 class="fw-bold mb-2">Need a hand around the house?</h2><p class="mb-0 text-secondary">Browse local services and make your next booking.</p></div><a href="{{ url_for('services') }}" class="btn btn-primary rounded-pill px-4 py-2">Explore services <i class="bi bi-arrow-right ms-1"></i></a></div></section>
+{% endblock %}
